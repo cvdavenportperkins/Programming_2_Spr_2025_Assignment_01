@@ -11,15 +11,15 @@ public class Player_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(Keycode.A))
+        if (Input.GetKeyDown("A"))
         {
             Debug.Log("A has been pressed");
         }
-        if (Input.GetKey(Keycode.A))
+        if (Input.GetKey("A"))
         {
             Debug.Log("A is being held down");
         }
-        if (Input.GetKeyUp(Keycode.A))
+        if (Input.GetKeyUp("A"))
         {
             Debug.Log("A has been released");
         }

@@ -5,33 +5,31 @@ using UnityEngine.Events;
 public class Timer : MonoBehaviour
 {
 
-    public TextMeshProUGUI;
-    public float timer = 5;
+    public TextMeshProUGUI timerText;
+    public float timerDuration = 5;
+    private float remainingTime;
     public AudioSource audioSource;
     public AudioClip audioClip;
-    public OnTimerElapse;
+    public UnityEvent OnTimerElapse;
 
-    private bool isElasped = false;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
-        
+        remainingTime = timerDuration;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timer >0)
+        remainingTime -= Time.deltaTime;
+        timerText.text = remainingTime.ToString("F2");
+        if (remainingTime <= 0) 
         {
-            timer -= Time.DeltaTime;
-            timerText.text = timer.ToString("F2")
-                if timer(timer <= 0 && !isElapsed)
-                {
-                    isElasped=true;
-                    OnTimerElapse.Invoke();
-                }
+            OnTimerElapse.Invoke();
+            remainingTime = timerDuration;
+            audioSource.PlayOneShot(audioClip);
         }
     }
 }
